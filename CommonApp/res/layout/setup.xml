@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/selectcommontime"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/app_item_bg"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:textSize="40dp"
+            android:text="设置时间" />
+
+        <TextView
+            android:id="@+id/tv_commontime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+             android:textSize="40dp"
+            android:text="5分钟" />
+    </RelativeLayout>
+    
+	<TextView
+            android:id="@+id/tv_showtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+            android:layout_marginTop="20dp"
+            android:textSize="40dp"
+            android:visibility="visible"
+            android:text="TextView" />
+    <ListView
+        android:id="@+id/lv_seltime"
+        android:layout_marginTop="20dp"
+        android:layout_width="500dp"
+         android:visibility="visible"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+</LinearLayout>

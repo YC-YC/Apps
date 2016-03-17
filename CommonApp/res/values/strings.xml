@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">常用App一览</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+	<string name="settime">设置时间</string>
+	<string name="app1">应用一</string>
+	<string name="app2">应用二</string>
+	<string name="app3">应用三</string>
+	<string name="app4">应用四</string>
+	
+</resources>

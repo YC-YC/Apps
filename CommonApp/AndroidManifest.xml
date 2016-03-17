@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zhonghong.commonapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!--
+        <activity
+            android:name="com.zhonghong.commonapp.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        -->
+        <activity android:name="com.zhonghong.commonapp.setup.SetupActivity" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="com.zhonghong.commonapp.broadcast.BootBroadcastReceiver" >
+            <intent-filter android:priority="2147463647" >
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.zhonghong.commonapp.widget.AppWidget" >
+            <intent-filter>
+
+                <!-- widget属性 -->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <!-- 接收更新数据 -->
+                <action android:name="com.zhonghong.commonappwidget.UPDATE_APP" />
+            </intent-filter>
+            <!-- 指定widget资源文件 -->
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_config" />
+        </receiver>
+    </application>
+
+</manifest>
