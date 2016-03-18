@@ -1,5 +1,10 @@
 package com.zhonghong.coldsetup;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,9 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zhonghong.cold.R;
 import com.zhonghong.cold.client.ClientFaceMode;
@@ -26,6 +34,9 @@ public class ColdSetupFragment extends Fragment implements OnClickListener{
 	private View mView;
 	private RelativeLayout mSeleteLimiteTime;
 	private TextView mColdtime;
+	
+	private TextView tvShowTime;
+	private ListView mLvSelTime;
 	
 	private Context mContext;
 	private long mColdTime;
@@ -56,7 +67,8 @@ public class ColdSetupFragment extends Fragment implements OnClickListener{
 			return;
 		}
 		mColdtime = (TextView) mView.findViewById(R.id.tv_coldtime);
-		mColdtime.setText(getColdTime());		
+		mColdtime.setText(getColdTime());	
+		tvShowTime.setText("当前设置时间为:" + getColdTime());
 	}
 	
 	@Override
@@ -77,8 +89,44 @@ public class ColdSetupFragment extends Fragment implements OnClickListener{
 		
 		mColdtime = (TextView) mView.findViewById(R.id.tv_coldtime);
 		mColdtime.setText(getColdTime());
+		
+		tvShowTime = (TextView) mView.findViewById(R.id.tv_showtime);
+		tvShowTime.setText("当前设置时间为:" + getColdTime());
+		
+		mLvSelTime = (ListView) mView.findViewById(R.id.lv_seltime);
+//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sel_list);
+		List<Map<String, String>> data = getData();
+		SimpleAdapter adapter = new SimpleAdapter(mContext, data, R.layout.list_item, 
+				new String[]{"content"}, new int[]{R.id.tv_list_item});
+		mLvSelTime.setAdapter(adapter);
+		mLvSelTime.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				try {
+					getTaskBinder().setColdTime(sel_time[position]);
+					mColdtime.setText(getColdTime());
+					tvShowTime.setText("当前设置时间为:" + getColdTime());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
+	private List<Map<String, String>> getData() {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		for(int i = 0; i < sel_list.length; i++)
+		{
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("content", sel_list[i]);
+			data.add(map);
+		}
+		return data;
+	}
+	
 	private ITaskBinder getTaskBinder()
 	{
 		return ClientFaceMode.getInstance().getTaskBinder();
@@ -134,6 +182,7 @@ public class ColdSetupFragment extends Fragment implements OnClickListener{
 						try {
 							getTaskBinder().setColdTime(sel_time[which]);
 							mColdtime.setText(getColdTime());
+							tvShowTime.setText("当前设置时间为:" + getColdTime());
 						} catch (RemoteException e) {
 							// TODO 自动生成的 catch 块
 							e.printStackTrace();

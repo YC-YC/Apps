@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zhonghong.gesture.GestureJni.OnTouchListener;
 import com.zhonghong.gesture.GlobalTouchHandle.DefultGestureResultListener;
 import com.zhonghong.gesture.utils.T;
@@ -32,6 +33,7 @@ public class GestureResultDo {
 		super();
 		this.mContext = context;
 		T.mContext = context;
+		CrashReport.initCrashReport(mContext, "900022770", false);
 		mGlobalTouchHandle = new GlobalTouchHandle(context);
 		init();
 	}

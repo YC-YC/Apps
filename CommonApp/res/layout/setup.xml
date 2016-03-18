@@ -34,7 +34,7 @@
             android:id="@+id/tv_showtime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF0000"
+            android:textColor="#000000"
             android:layout_marginTop="20dp"
             android:textSize="40dp"
             android:visibility="visible"

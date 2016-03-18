@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res/com.zhonghong.commonappwidget"
     android:layout_width="210dp"
-    android:layout_height="300dp"
+    android:layout_height="310dp"
     android:gravity="center_horizontal"
     android:padding="4dp"
-    android:background="@drawable/fm_bg"
+    android:background="@drawable/widget_bg"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:text="@string/app1" />
         </LinearLayout>
 
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:text="@string/app2" />
         </LinearLayout>
     </LinearLayout>
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:text="@string/app3" />
         </LinearLayout>
 
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="10dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:text="@string/app4" />
         </LinearLayout>
     </LinearLayout>
@@ -127,6 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:textColor="@android:color/white"
         android:text="@string/settime" />
 
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.content.pm.PackageInfo;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zhonghong.commonapp.database.CommonDBManager;
 import com.zhonghong.commonapp.utils.AppBean;
 import com.zhonghong.commonapp.utils.AppInfoBean;
@@ -58,6 +59,7 @@ public class CommonAppHelper implements Runnable{
 	public CommonAppHelper(Context context) {
 		T.mCommonAppHelper = this;
 		mContext = context;
+		CrashReport.initCrashReport(context, "900022768", false);
 		init();
 		startThread();
 	}

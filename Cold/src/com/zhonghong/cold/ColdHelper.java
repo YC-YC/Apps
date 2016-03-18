@@ -3,6 +3,7 @@ package com.zhonghong.cold;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zhonghong.cold.datebase.ColdDBManager;
 import com.zhonghong.cold.utils.ColdAppBean;
 import com.zhonghong.cold.utils.T;
@@ -72,6 +73,7 @@ public class ColdHelper implements Runnable {
 		mPm = mContext.getPackageManager();
 		mAm = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
 		T.mColdHelper = this;
+		CrashReport.initCrashReport(mContext, "900022119", false);
 		mDBManager = new ColdDBManager(mContext);
 		
 		init();
