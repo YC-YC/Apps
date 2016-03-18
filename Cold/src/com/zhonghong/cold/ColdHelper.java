@@ -178,7 +178,10 @@ public class ColdHelper implements Runnable {
 		
 	}
 
-	//更新列表
+	/**
+	 * 更新列表
+	 * @param millisOffset
+	 */
 	private void checkAllInstallApp(long millisOffset) {
 		mInstallApp = getAllInstallApp();
 		if (mInstallApp.size() > 0)
@@ -341,7 +344,10 @@ public class ColdHelper implements Runnable {
 		}
 	}
 	
-	//重置mAllAppInfo指定包名的时间
+	/**
+	 * 重置mAllAppInfo指定包名的时间
+	 * @param pkgName
+	 */
 	private void resetOneItemAllAppInfo(String pkgName)
 	{
 		if (mAllAppInfo.size() > 0)
@@ -411,16 +417,6 @@ public class ColdHelper implements Runnable {
 			{
 				lastCheckTime = SystemClock.elapsedRealtime();
 				checkAllInstallApp(timeInterVal);
-//				String topAppPackage = getTopAppPackage();
-//				LOG("topAppPackage = " + topAppPackage);
-//				resetOneItemAllAppInfo(topAppPackage);
-				
-				/*List<RunningAppProcessInfo> processes = ((ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE)).getRunningAppProcesses();
-				for (RunningAppProcessInfo info: processes)
-				{
-					LOG(info.processName);
-					resetOneItemAllAppInfo(info.processName);
-				}*/
 				
 				List<RunningTaskInfo> tasks = ((ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE)).getRunningTasks(Integer.MAX_VALUE);
 //				LOG("getTasks size = " + tasks.size());
@@ -430,7 +426,6 @@ public class ColdHelper implements Runnable {
 					resetOneItemAllAppInfo(task.baseActivity.getPackageName());
 				}
 				
-//				resetOneItemAllAppInfo(topAppPackage);
 				updateColdList();
 			}
 			else
@@ -443,6 +438,9 @@ public class ColdHelper implements Runnable {
 		}
 	}
 
+	/**
+	 * 更新冷藏列表
+	 */
 	private void updateColdList() {
 		boolean hasNewColdItem = false;
 		if (mAllAppInfo.size() > 0)
@@ -465,49 +463,13 @@ public class ColdHelper implements Runnable {
 				hasNewColdItem = true;
 			}
 			mColdList = tmpColdList;
-			/*
-			for (int i = 0; i < mAllAppInfo.size(); i++)
-			{
-				if (!isInInstallList(mAllAppInfo.get(i).pkgName))
-				{
-					continue;
-				}
-				ColdAppBean bean = mAllAppInfo.get(i);
-				if (bean.millis > mColdTime * 1000)//新加
-				{
-					int coldItem = 0;
-					for (coldItem = 0; coldItem < mColdList.size(); coldItem++)
-					{
-						if (bean.pkgName.equals(mColdList.get(coldItem)))
-						{
-							break;
-						}
-					}
-					if (coldItem >= mColdList.size())
-					{
-						mColdList.add(bean.pkgName);
-						hasNewColdItem = true;
-					}
-				}
-				else	//去除
-				{
-					for (int j = 0; j < mColdList.size(); j++)
-					{
-						if (bean.pkgName.equals(mColdList.get(j)))
-						{
-							mColdList.remove(j);
-							hasNewColdItem = true;
-							break;
-						}
-					}
-				}
-			}
-		*/}
+		}
 		if (hasNewColdItem)
 		{
 			if (mCallback != null)
 			{
 				mCallback.callback();
+				saveDatabase();
 			}
 			
 		}
