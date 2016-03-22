@@ -52,7 +52,8 @@ public class CommonAppHelper implements Runnable{
 			"com.chenli.launcher",
 			"com.chenli.launcher2",
 			"com.android.systemui",
-			"com.android.packageinstaller"
+			"com.android.packageinstaller",
+			"com.zhonghong.update.service"
 	};
 	
 	

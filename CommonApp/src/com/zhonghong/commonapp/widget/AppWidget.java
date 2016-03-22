@@ -76,19 +76,34 @@ public class AppWidget extends AppWidgetProvider implements CommonAppListChanged
 		else if (intent.hasCategory(Intent.CATEGORY_ALTERNATIVE))
 		{
 			Uri data = intent.getData();
+			LOG("Receive data = " + data);
+
 			int key = Integer.parseInt(data.getSchemeSpecificPart());
+			LOG("Receive key = " + key + " ,appListSize = " + appList.size());
 			switch (key) {
 			case T.Cmd.OPEN_APP_1:
-				openOtherActivity(appList.get(0));
+				if (appList.size() >= 1)
+				{
+					openOtherActivity(appList.get(0));
+				}
 				break;
 			case T.Cmd.OPEN_APP_2:
-				openOtherActivity(appList.get(1));
+				if (appList.size() >= 2)
+				{
+					openOtherActivity(appList.get(1));
+				}
 				break;
 			case T.Cmd.OPEN_APP_3:
-				openOtherActivity(appList.get(2));
+				if (appList.size() >= 3)
+				{
+					openOtherActivity(appList.get(2));
+				}
 				break;
 			case T.Cmd.OPEN_APP_4:
-				openOtherActivity(appList.get(3));
+				if (appList.size() >= 4)
+				{
+					openOtherActivity(appList.get(3));
+				}
 				break;
 			case T.Cmd.OPEN_SET_TIME:
 				openSetTime();
@@ -116,7 +131,10 @@ public class AppWidget extends AppWidgetProvider implements CommonAppListChanged
 		ComponentName name = new ComponentName(bean.pkgName, bean.className);
 		it.setComponent(name);
 		it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-		mContext.startActivity(it);
+		try {
+			mContext.startActivity(it);
+		} catch (Exception e) {
+		}
 	}
 
 	@Override
